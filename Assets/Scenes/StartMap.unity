@@ -492,7 +492,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.3
-  m_Height: 1.5
+  m_Height: 1.8
   m_Direction: 1
   m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &2032129888
@@ -507,6 +507,7 @@ GameObject:
   - component: {fileID: 2032129891}
   - component: {fileID: 2032129890}
   - component: {fileID: 2032129889}
+  - component: {fileID: 2032129893}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -632,6 +633,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 7.484, y: 0, z: 0}
+--- !u!114 &2032129893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032129888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4322346c1c9ec4aa4ef9fb2d215f91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transCamPoint: {fileID: 1023162047}
+  followSpeed: 10
+  sensitivity: 100
+  scrollSensitivity: 10
+  clampAngle: 70
+  transCamera: {fileID: 2032129892}
+  minDist: 0
+  maxDist: 0
+  smoothness: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

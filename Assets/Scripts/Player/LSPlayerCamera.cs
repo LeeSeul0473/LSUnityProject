@@ -1,63 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class LSPlayerCamera
+public class LSPlayerCamera : MonoBehaviour
 {
-    [SerializeField] Transform target; // 카메라가 따라갈 대상 (캐릭터)
-    [SerializeField] private float minDistance = 1f; // 카메라 최소 거리
-    [SerializeField] private float maxDistance = 5f; // 카메라 최대 거리
-    [SerializeField] private float cameraDist = 3f; // 현재 카메라 거리 & 초기 거리
+    public Transform transCamPoint;
+    [SerializeField]
+    private float followSpeed = 10f;
+    [SerializeField]
+    private float sensitivity = 100f;
+    [SerializeField]
+    private float scrollSensitivity = 10f;
+    [SerializeField]
+    private float clampAngle = 70f;
 
-    public float sensitivity = 100f; // 마우스 감도
-    public float minXRot = -50f; // 카메라의 최소 X축 회전값
-    public float maxXRot = 50f; // 카메라의 최대 X축 회전값
+    private float rotX;
+    private float rotY;
 
-    private float rotationX = 0f; // 현재 X축 회전값
-    private Vector2 mouseDir; // 현재 마우스 입력값 저장
-    private Vector3 cameraDir; // 플레이어 -> 카메라 방향
+    public Transform transCamera;
+    private Vector3 dir;
+    private Vector3 Raydir;
+    private float dist;
 
-    // 마우스 입력을 받아 카메라 회전에 반영
-    void MouseInput(InputAction.CallbackContext context)
+    [SerializeField]
+    private float minDist;
+    [SerializeField]
+    private float maxDist;
+    [SerializeField]
+    private float smoothness = 10;
+
+    public void Init()
     {
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            mouseDir = Vector3.zero;
-            return;
-        }
-        mouseDir = context.ReadValue<Vector2>();
+        this.rotX = this.gameObject.transform.localRotation.eulerAngles.x;
+        this.rotY = this.gameObject.transform.localRotation.eulerAngles.y;
+
+        this.dir = this.transCamera.localPosition.normalized;
+        this.dist = this.transCamera.localPosition.magnitude;
     }
 
-    // 마우스 휠 입력을 받아 카메라 줌 조절
-    void MouseWheelInput(InputAction.CallbackContext context)
+    private void Update()
     {
-        float y = context.ReadValue<Vector2>().y;
-        cameraDist += Mathf.Clamp(-y, -1f, 1f);
-        cameraDist = Mathf.Clamp(cameraDist, minDistance, maxDistance);
+        // y축을 기준으로 회전
+        this.rotX += -(Input.GetAxis("Mouse Y")) * this.sensitivity + Time.deltaTime;
+        // x축을 기준으로 회전
+        this.rotY += Input.GetAxis("Mouse X") * this.sensitivity + Time.deltaTime;
+
+        // 마우스 휠로 카메라 거리를 조절합니다.
+        float mouseScroll = Input.GetAxis("Mouse ScrollWheel");
+        this.dist -= mouseScroll * this.scrollSensitivity;
+        this.dist = Mathf.Clamp(this.dist, minDist, maxDist);
+
+        this.rotX = Mathf.Clamp(this.rotX, -this.clampAngle, this.clampAngle);
+        Quaternion rot = Quaternion.Euler(this.rotX, this.rotY, 0);
+        this.gameObject.transform.rotation = rot;
     }
 
-    // 카메라 회전
-    void MoveCamera()
+    private void LateUpdate()
     {
-        transform.position = target.position;
-        Vector2 mouseDelta = mouseDir * sensitivity * Time.deltaTime;
+        this.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, this.transCamPoint.position, this.followSpeed * Time.deltaTime);
 
-        transform.Rotate(Vector3.up * mouseDelta.x);
-        rotationX -= mouseDelta.y;
-        rotationX = Mathf.Clamp(rotationX, minXRot, maxXRot);
-        transform.localRotation = Quaternion.Euler(rotationX, transform.localEulerAngles.y, 0f);
-
-        mouseDir = Vector2.zero;
-    }
-
-    void SetCameraDist()
-    {
-        float dist = cameraDist;
-        Vector3 dir = (Camera.main.transform.position - transform.position).normalized;
-        Ray ray = new Ray(transform.position + Vector3.up * 0.2f, dir);
-
+        // 카메라와 플레이어 사이의 물체를 감지합니다.
+        this.Raydir = this.gameObject.transform.TransformPoint(this.dir * this.maxDist);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, cameraDist))
-            dist = (hit.point - transform.position).magnitude;
+        if (Physics.Linecast(this.gameObject.transform.position, this.Raydir, out hit))
+        {
+            this.dist = Mathf.Clamp(hit.distance, this.minDist, this.maxDist);
+        }
 
-        Camera.main.transform.localPosition = cameraDir * dist;
+        this.transCamera.localPosition = Vector3.Lerp(this.transCamera.localPosition, this.dir * this.dist, Time.deltaTime * this.smoothness);
     }
 }

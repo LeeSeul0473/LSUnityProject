@@ -10,7 +10,7 @@ public class LSAttackAction : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        meleeAttackRadius = 1.0f;
     }
 
     // Update is called once per frame
@@ -25,15 +25,18 @@ public class LSAttackAction : MonoBehaviour
 
     void MeleeAttack()
     {
-        Vector3 pos = player.position + new Vector3(0.0f, 0.0f, 1.0f);
+        Vector3 pos = player.position + new Vector3(0.0f, 1.0f, 1.0f);
+        Vector3 dir = pos - new Vector3(0.0f, 1.0f, 1.0f) + player.forward * meleeAttackRadius;
         Collider[] colls = Physics.OverlapSphere(pos, meleeAttackRadius);
         if(colls.Length > 0)
         {
             Debug.Log("Attack Hitted.");
+            Debug.DrawRay(pos, dir, Color.green, 2.0f, true);
         }
         else
         {
             Debug.Log("Attack not Hitted.");
+            
         }
     }
 }

@@ -31,7 +31,6 @@ public class LSAttackAction : MonoBehaviour
         if(colls.Length > 0)
         {
             Debug.Log("Attack Hitted.");
-            Debug.DrawRay(pos, dir, Color.green, 2.0f, true);
         }
         else
         {

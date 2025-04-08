@@ -1,6 +1,4 @@
-using UnityEngine;
-
-public class TakeDamageInterface
+public interface TakeDamageInterface
 {
-    virtual void TakeDamage(float damage)=0;
+    public abstract void TakeDamage(float damage);
 }

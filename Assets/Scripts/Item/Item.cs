@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public class Item : MonoBehaviour, TakeDamageInterface
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,5 +17,10 @@ public class Item : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         
+    }
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("데미지 함수 호출");
     }
 }

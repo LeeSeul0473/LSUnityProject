@@ -31,6 +31,10 @@ public class LSAttackAction : MonoBehaviour
         if(colls.Length > 0)
         {
             Debug.Log("Attack Hitted.");
+            for(Collider hitActor : colls)
+            {
+
+            }
         }
         else
         {

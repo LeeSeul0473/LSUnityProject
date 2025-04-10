@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class LSAttackAction : MonoBehaviour
 {
     [SerializeField] private Transform player;
@@ -30,10 +31,18 @@ public class LSAttackAction : MonoBehaviour
         Collider[] colls = Physics.OverlapSphere(pos, meleeAttackRadius);
         if(colls.Length > 0)
         {
-            Debug.Log("Attack Hitted.");
-            for(Collider hitActor : colls)
-            {
 
+            foreach(Collider hitActor in colls)
+            {
+                TakeDamageInterface DamageActor = (TakeDamageInterface)hitActor.gameObject.GetComponent<Item>();
+                if(DamageActor != null)
+                {
+                    DamageActor.TakeDamage(10.0f);
+                }
+                else
+                {
+                    Debug.Log("TakeDamageInterface not found.");
+                }
             }
         }
         else

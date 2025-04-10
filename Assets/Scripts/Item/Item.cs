@@ -21,6 +21,7 @@ public class Item : MonoBehaviour, TakeDamageInterface
 
     public void TakeDamage(float damage)
     {
-        Debug.Log("데미지 함수 호출");
+        Debug.Log("데미지 함수 호출 : " + damage);
+        Destroy(gameObject);
     }
 }

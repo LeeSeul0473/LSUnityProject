@@ -27,7 +27,7 @@ public class LSAttackAction : MonoBehaviour
     void MeleeAttack()
     {
         Vector3 pos = player.position + new Vector3(0.0f, 1.0f, 1.0f);
-        Vector3 dir = pos - new Vector3(0.0f, 1.0f, 1.0f) + player.forward * meleeAttackRadius;
+        //Vector3 dir = pos - new Vector3(0.0f, 1.0f, 1.0f) + player.forward * meleeAttackRadius;
         Collider[] colls = Physics.OverlapSphere(pos, meleeAttackRadius);
         if(colls.Length > 0)
         {

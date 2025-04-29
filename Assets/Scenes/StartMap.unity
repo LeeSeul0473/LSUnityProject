@@ -565,6 +565,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &365114338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3978658990374812633, guid: 3c713979a31ab204ab1b2d75dbed19bf, type: 3}
+  m_PrefabInstance: {fileID: 1133324367169355088}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &377209452
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,7 +713,7 @@ GameObject:
   - component: {fileID: 1023162052}
   m_Layer: 0
   m_Name: CharacterPlayer
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -818,7 +823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ac071d3c05a46489aa6d99b0d32dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  stagePrefab: {fileID: 365114338}
 --- !u!4 &1742250812
 Transform:
   m_ObjectHideFlags: 0

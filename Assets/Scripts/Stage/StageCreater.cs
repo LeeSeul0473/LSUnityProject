@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class StageCreater : MonoBehaviour
 {
-    [SerializeField] private Transform player;
+    [SerializeField]
+    public GameObject stagePrefab;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,21 +17,20 @@ public class StageCreater : MonoBehaviour
         
     }
 
-    void StageCreate(Vector3 pos)
+    void StageCreate(Transform pos)
     {
-        Collider[] colls = Physics.OverlapSphere(pos, 1.0f);
+        Collider[] colls = Physics.OverlapSphere(pos.position, 1.0f);
         if (colls.Length > 0)
         {
             foreach (Collider hitActor in colls)
             {
-                TakeDamageInterface DamageActor = (TakeDamageInterface)hitActor.gameObject.GetComponent<Item>();
-                if (DamageActor != null)
+                if(hitActor.tag=="Stage")
                 {
-                    DamageActor.TakeDamage(10.0f);
+                    Debug.Log("Stage Exist");
                 }
                 else
                 {
-                    Debug.Log("TakeDamageInterface not found.");
+                    Instantiate(stagePrefab, pos.position, pos.rotation);
                 }
             }
         }

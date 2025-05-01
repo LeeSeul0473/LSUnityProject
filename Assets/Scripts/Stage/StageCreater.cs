@@ -17,9 +17,9 @@ public class StageCreater : MonoBehaviour
         
     }
 
-    void StageCreate(Transform pos)
+    void StageCreate(Vector3 pos)
     {
-        Collider[] colls = Physics.OverlapSphere(pos.position, 1.0f);
+        Collider[] colls = Physics.OverlapSphere(pos, 1.0f);
         if (colls.Length > 0)
         {
             foreach (Collider hitActor in colls)
@@ -27,10 +27,12 @@ public class StageCreater : MonoBehaviour
                 if(hitActor.tag=="Stage")
                 {
                     Debug.Log("Stage Exist");
+                    return;
                 }
                 else
                 {
-                    Instantiate(stagePrefab, pos.position, pos.rotation);
+                    Instantiate(stagePrefab, pos, Quaternion.Euler(0f, 0f, 0f));
+                    return;
                 }
             }
         }

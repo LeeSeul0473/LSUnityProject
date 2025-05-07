@@ -684,13 +684,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ch11_nonPBR
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: e17662c211af5814ea33cdf0b6230fed, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:LeftHandPinky2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
+        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftHandMiddle3'\n\tTransform
+        'mixamorig:LeftShoulder'\n\tand more ...\n\tFrom animation clip 'Standing
+        Torch Walk Forward'"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2134629596}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
 --- !u!4 &409776189 stripped
 Transform:
@@ -1170,29 +1182,6 @@ MonoBehaviour:
   minDist: 1
   maxDist: 2
   smoothness: 10
---- !u!1 &2134629595 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
-  m_PrefabInstance: {fileID: 409776188}
-  m_PrefabAsset: {fileID: 0}
---- !u!111 &2134629596
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2134629595}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: -203655887218126122, guid: c07a7042fffb0af4083bb339aa6f4aef, type: 3}
-  m_Animations:
-  - {fileID: -203655887218126122, guid: c07a7042fffb0af4083bb339aa6f4aef, type: 3}
-  - {fileID: -203655887218126122, guid: dc470725c5e98ac439903c69a32e961c, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
 --- !u!1001 &4268917340630010568
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -690,25 +690,47 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: e17662c211af5814ea33cdf0b6230fed, type: 2}
     - target: {fileID: 5866666021909216657, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
-        'mixamorig:LeftHandIndex1'\n\tTransform 'mixamorig:LeftHandPinky2'\n\tTransform
-        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:RightArm'\n\tTransform
-        'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftHandMiddle3'\n\tTransform
-        'mixamorig:LeftShoulder'\n\tand more ...\n\tFrom animation clip 'Standing
-        Torch Walk Forward'"
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 409776192}
   m_SourcePrefab: {fileID: 100100000, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
 --- !u!4 &409776189 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
   m_PrefabInstance: {fileID: 409776188}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &409776190 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
+  m_PrefabInstance: {fileID: 409776188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &409776191 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 0b30fbefbc22b9e41a78265ac27eac39, type: 3}
+  m_PrefabInstance: {fileID: 409776188}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &409776192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 409776190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37db9f4d75d3a524f81d5b830e35aea0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 409776191}
+  owner: {fileID: 1023162046}
+  movingThreshold: 3
+  jumpingThreshold: 100
 --- !u!1 &1023162046
 GameObject:
   m_ObjectHideFlags: 0

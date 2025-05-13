@@ -7,11 +7,13 @@ public class LSAttackAction : MonoBehaviour
     [SerializeField] public float meleeAttackDamage;
     [SerializeField] public float meleeAttackRadius;
     [SerializeField] public bool IsAttack = false;
+    LSAniminstance Animinstance;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         meleeAttackRadius = 1.0f;
+        Animinstance = transform.Find("Ch11_nonPBR").GetComponent<LSAniminstance>();
     }
 
     // Update is called once per frame
@@ -26,6 +28,7 @@ public class LSAttackAction : MonoBehaviour
 
     void MeleeAttack()
     {
+        Animinstance.SendMessage("PlayAttack");
         Vector3 pos = player.position + new Vector3(0.0f, 1.0f, 1.0f);
         //Vector3 dir = pos - new Vector3(0.0f, 1.0f, 1.0f) + player.forward * meleeAttackRadius;
         Collider[] colls = Physics.OverlapSphere(pos, meleeAttackRadius);

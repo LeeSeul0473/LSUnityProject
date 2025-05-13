@@ -4,6 +4,7 @@ public class LSPlayerMove : MonoBehaviour
 {
     Camera mainCamera;
     CharacterController LScontroller;
+    LSAniminstance Animinstance;
     public Transform CameraDir;
 
     public float walkspeed = 5f;
@@ -19,6 +20,7 @@ public class LSPlayerMove : MonoBehaviour
     {
         mainCamera = Camera.main;
         LScontroller = this.GetComponent<CharacterController>();
+        Animinstance = transform.Find("Ch11_nonPBR").GetComponent<LSAniminstance>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,15 @@ public class LSPlayerMove : MonoBehaviour
 
             LScontroller.Move(moveDirection.normalized * speed * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);
+            
+            if(Animinstance)
+            {
+                Animinstance.bisIdle = false;
+            }
+        }
+        else
+        {
+            Animinstance.bisIdle = true;
         }
     }
 }

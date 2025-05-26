@@ -20,7 +20,7 @@ public class LSPlayerMove : MonoBehaviour
     {
         mainCamera = Camera.main;
         LScontroller = this.GetComponent<CharacterController>();
-        Animinstance = transform.Find("Ch11_nonPBR").GetComponent<LSAniminstance>();
+        Animinstance = this.GetComponent<LSAniminstance>();
     }
 
     // Update is called once per frame

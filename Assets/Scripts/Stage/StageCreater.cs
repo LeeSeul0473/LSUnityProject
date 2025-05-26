@@ -19,6 +19,7 @@ public class StageCreater : MonoBehaviour
 
     void StageCreate(Vector3 pos)
     {
+        Debug.Log("StageCreate called");
         Collider[] colls = Physics.OverlapSphere(pos, 1.0f);
         if (colls.Length > 0)
         {
@@ -38,8 +39,8 @@ public class StageCreater : MonoBehaviour
         }
         else
         {
-            Debug.Log("Attack not Hitted.");
-
+            Instantiate(stagePrefab, pos, Quaternion.Euler(0f, 0f, 0f));
+            return;
         }
     }
 }

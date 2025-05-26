@@ -159,7 +159,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: dc470725c5e98ac439903c69a32e961c, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: a73a1ec21230d17469b2433d09961195, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -173,7 +173,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Standing Torch Melee Attack 01
-  m_Speed: 1
+  m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -5956349429642890825}
@@ -186,7 +186,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: f19b427cfeab8d842855a30f44c60a98, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: bb26718166e47d54c8c41cf5ebe14aa5, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -213,7 +213,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -203655887218126122, guid: c07a7042fffb0af4083bb339aa6f4aef, type: 3}
+  m_Motion: {fileID: -203655887218126122, guid: 862116a14e36fc54481b447a4427b7a2, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

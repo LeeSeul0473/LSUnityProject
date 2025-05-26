@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class LSAttackAction : MonoBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] public float meleeAttackDamage;
-    [SerializeField] public float meleeAttackRadius;
-    [SerializeField] public bool IsAttack = false;
-    LSAniminstance Animinstance;
+    private float meleeAttackRadius;
+    //[SerializeField] public bool IsAttack = false;
+    [SerializeField] public LSAniminstance Animinstance;
+    private GameObject player;
+    Vector3 attackPosition;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        meleeAttackRadius = 1.0f;
-        Animinstance = transform.Find("Ch11_nonPBR").GetComponent<LSAniminstance>();
+        meleeAttackRadius = 1.5f;
+        player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
@@ -21,30 +21,25 @@ public class LSAttackAction : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Debug.Log("Attack Key Activated.");
             MeleeAttack();
         }
     }
 
     void MeleeAttack()
     {
-        Animinstance.SendMessage("PlayAttack");
-        Vector3 pos = player.position + new Vector3(0.0f, 1.0f, 1.0f);
-        //Vector3 dir = pos - new Vector3(0.0f, 1.0f, 1.0f) + player.forward * meleeAttackRadius;
-        Collider[] colls = Physics.OverlapSphere(pos, meleeAttackRadius);
-        if(colls.Length > 0)
+        //Animinstance.SendMessage("PlayAttack");
+        attackPosition = player.transform.position + player.transform.forward * 1f;
+        attackPosition.y = 0.7f;
+        //Debug.Log("attack Position : " + attackPosition);
+        //Debug.Log("Player Position : " + player.transform.position);
+        Collider[] colls = Physics.OverlapSphere(attackPosition, meleeAttackRadius);
+        if (colls.Length > 0)
         {
-
-            foreach(Collider hitActor in colls)
+            foreach (Collider hitActor in colls)
             {
-                TakeDamageInterface DamageActor = (TakeDamageInterface)hitActor.gameObject.GetComponent<Item>();
-                if(DamageActor != null)
+                if (hitActor.tag == "Ghost")
                 {
-                    DamageActor.TakeDamage(10.0f);
-                }
-                else
-                {
-                    Debug.Log("TakeDamageInterface not found.");
+                    Destroy(hitActor.gameObject);
                 }
             }
         }
@@ -53,5 +48,11 @@ public class LSAttackAction : MonoBehaviour
             Debug.Log("Attack not Hitted.");
             
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(attackPosition, meleeAttackRadius);
     }
 }

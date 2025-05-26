@@ -4,8 +4,8 @@ using UnityEngine.UIElements;
 public class LSAniminstance : MonoBehaviour
 {
     public Animator animator;
-    public GameObject owner;
-    private CharacterController ownerController;
+    //public GameObject owner;
+    //private CharacterController ownerController;
 
     public bool bisIdle = true;
     private int isIdleHash;
@@ -14,7 +14,7 @@ public class LSAniminstance : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        ownerController = owner.GetComponent<CharacterController>();
+        //ownerController = GetComponent<CharacterController>();
 
         isIdleHash = Animator.StringToHash("IsIdle");
 
@@ -24,7 +24,7 @@ public class LSAniminstance : MonoBehaviour
     void Update()
     {
         animator.SetBool(isIdleHash, bisIdle);
-        Debug.Log($"isIdle 설정: {bisIdle}, 애니메이터 값: {animator.GetBool(isIdleHash)}");
+        //Debug.Log($"isIdle 설정: {bisIdle}, 애니메이터 값: {animator.GetBool(isIdleHash)}");
     }
 
     void PlayAttack()

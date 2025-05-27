@@ -41,7 +41,7 @@ public class LSGhostMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.SendMessage("ApplyDamage", 10);
+            other.gameObject.SendMessage("ApplyDamage", 5);
             Destroy(gameObject);
         }
     }

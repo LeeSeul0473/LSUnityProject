@@ -21,7 +21,7 @@ public class LSGameController : MonoBehaviour
         if(calledObject.tag == "Stage")
         {
             currentStage = calledObject;
-            Debug.Log("currentStage setted.");
+            //Debug.Log("currentStage setted.");
 
             currentStage.GetComponent<BoxCollider>().enabled = false;
             currentStage.SendMessage("StartGenerate");
@@ -31,7 +31,7 @@ public class LSGameController : MonoBehaviour
 
     void FightEnd()
     {
-        Debug.Log("FightEnd called.");
+        //Debug.Log("FightEnd called.");
         if (currentStage != null)
         {
             currentStage.SendMessage("StopGenerate");

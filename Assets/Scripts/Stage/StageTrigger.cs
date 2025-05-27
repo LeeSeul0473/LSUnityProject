@@ -28,7 +28,7 @@ public class StageTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter Called");
+        //Debug.Log("OnTriggerEnter Called");
         if (other.tag == "Player")
         {
             gameController.SendMessage("FightStart", this.gameObject);
@@ -37,7 +37,7 @@ public class StageTrigger : MonoBehaviour
 
     private void OpenGates()
     {
-        Debug.Log("OpenGates Called");
+        //Debug.Log("OpenGates Called");
         doorPZMesh.gameObject.SetActive(false);
         doorPZTrigger.gameObject.SetActive(true);
 
@@ -53,7 +53,7 @@ public class StageTrigger : MonoBehaviour
 
     private void CloseGates()
     {
-        Debug.Log("CloseGates Called");
+        //Debug.Log("CloseGates Called");
 
         doorPZMesh.gameObject.SetActive(true);
         doorPZTrigger.gameObject.SetActive(false);

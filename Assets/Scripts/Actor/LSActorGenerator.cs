@@ -38,8 +38,8 @@ public class LSActorGenerator : MonoBehaviour
 
             float currentX = this.transform.position.x;
             float currentZ = this.transform.position.z;
-            float spawnLocationX = Random.Range(currentX-5.0f, currentX + 5.0f);
-            float spawnLocationZ = Random.Range(currentZ-5.0f, currentZ + 5.0f);
+            float spawnLocationX = Random.Range(currentX-4.0f, currentX + 4.0f);
+            float spawnLocationZ = Random.Range(currentZ-4.0f, currentZ + 4.0f);
             Vector3 spawnPosition = new Vector3(spawnLocationX, 1f, spawnLocationZ);
             Instantiate(prefab, spawnPosition, Quaternion.identity);
         }

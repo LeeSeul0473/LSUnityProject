@@ -19,7 +19,7 @@ public class StageCreater : MonoBehaviour
 
     void StageCreate(Vector3 pos)
     {
-        Debug.Log("StageCreate called");
+        //Debug.Log("StageCreate called");
         Collider[] colls = Physics.OverlapSphere(pos, 1.0f);
         if (colls.Length > 0)
         {
@@ -27,7 +27,7 @@ public class StageCreater : MonoBehaviour
             {
                 if(hitActor.tag=="Stage")
                 {
-                    Debug.Log("Stage Exist");
+                    //Debug.Log("Stage Exist");
                     return;
                 }
                 else

@@ -18,7 +18,7 @@ public class GateTrigger : MonoBehaviour
     {
         if (other.tag != "Player") return;
 
-        Debug.Log("GateTrigger Overlap : " + gameObject.tag);
+        //Debug.Log("GateTrigger Overlap : " + gameObject.tag);
         GameObject gameController = GameObject.FindWithTag("GameController");
         Vector3 spawnPos = gameObject.transform.position;
         spawnPos.y = 0.0f;

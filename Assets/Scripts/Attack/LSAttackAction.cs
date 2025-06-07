@@ -5,7 +5,6 @@ using System.Collections;
 public class LSAttackAction : MonoBehaviour
 {
     private float meleeAttackRadius;
-    //[SerializeField] public bool IsAttack = false;
     [SerializeField] public LSAniminstance Animinstance;
     private GameObject player;
     private LSPlayerStatus PlayerStatus;
@@ -38,7 +37,7 @@ public class LSAttackAction : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        Debug.Log("MeleeAttack Begin");
+        //Debug.Log("MeleeAttack Begin");
         Collider[] colls = Physics.OverlapSphere(attackPosition, meleeAttackRadius);
         if (colls.Length > 0)
         {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LSClearScene : MonoBehaviour
+public class LSPreviewScene : MonoBehaviour
 {
     public GUISkin skin;
 
@@ -14,10 +14,6 @@ public class LSClearScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Jump"))
-        {
-            SceneManager.LoadScene("StartScene");
-        }
     }
 
     private void OnGUI()
@@ -25,7 +21,6 @@ public class LSClearScene : MonoBehaviour
         GUI.skin = skin;
         int sw = Screen.width;
         int sh = Screen.height;
-        GUI.Label(new Rect(0, sh / 4, sw, sh / 4), "Game Clear", "Clear");
-        GUI.Label(new Rect(0, sh / 2, sw, sh / 4), "Press Space Bar to Restart", "Clear");
+        GUI.Label(new Rect(0, 0, sw, sh), "Escape\nDungeon", "Preview");
     }
 }

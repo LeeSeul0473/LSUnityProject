@@ -1,7 +1,5 @@
 using System.Collections;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 public class LSGhostMove : MonoBehaviour
 {

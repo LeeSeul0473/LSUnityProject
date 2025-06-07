@@ -7,11 +7,13 @@ public class LSGameController : MonoBehaviour
     private bool isEscape;
     int currentLevel;
     public GameObject playerStatus;
+    private GameObject escapeDoor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GameObject.FindWithTag("Escape").SetActive(false);
+        escapeDoor = GameObject.FindWithTag("Escape");
+        escapeDoor.SetActive(false);
         isEscape = false;
         currentLevel = 1;
     }
@@ -29,16 +31,6 @@ public class LSGameController : MonoBehaviour
             if (calledObject.tag == "Stage")
             {
                 currentStage = calledObject;
-                if (currentStage != null)
-                {
-                    Debug.Log("currentStage setted.");
-                }
-                else
-                {
-                    Debug.Log("currentStage setting failed.");
-                }
-
-
                 currentStage.GetComponent<BoxCollider>().enabled = false;
                 currentStage.SendMessage("StartGenerate", currentLevel);
                 currentStage.SendMessage("CloseGates");
@@ -56,10 +48,6 @@ public class LSGameController : MonoBehaviour
             currentStage.SendMessage("StopGenerate");
             currentStage.SendMessage("OpenGates");
             currentStage = null;
-        }
-        else
-        {
-            Debug.Log("currentStage is null.");
         }
 
         GameObject[] spawnActors = GameObject.FindGameObjectsWithTag("Ghost");
@@ -81,7 +69,7 @@ public class LSGameController : MonoBehaviour
 
     void KeySpawn()
     {
-        Debug.Log("KeySpawn called.");
+        //Debug.Log("KeySpawn called.");
         if (currentStage != null)
         {
             currentStage.SendMessage("KeyGenerate");
@@ -96,8 +84,8 @@ public class LSGameController : MonoBehaviour
             stage.SendMessage("StartGenerate", currentLevel);
         }
 
-        playerStatus.SendMessage("Escape");
-        GameObject.FindWithTag("Escape").SetActive(true);
+        playerStatus.SendMessage("EscapeStart");
+        escapeDoor.SetActive(true);
     }
     
     void GameClear()

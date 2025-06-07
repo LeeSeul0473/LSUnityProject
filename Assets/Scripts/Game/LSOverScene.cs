@@ -25,7 +25,7 @@ public class LSOverScene : MonoBehaviour
         GUI.skin = skin;
         int sw = Screen.width;
         int sh = Screen.height;
-        GUI.Label(new Rect(0, sh / 4, sw, sh / 4), "Game Over", "Title");
-        GUI.Label(new Rect(0, sh / 2, sw, sh / 4), "Press Space Bar to Restart", "Title");
+        GUI.Label(new Rect(0, sh / 4, sw, sh / 4), "Game Over", "Over");
+        GUI.Label(new Rect(0, sh / 2, sw, sh / 4), "Press Space Bar to Restart", "Over");
     }
 }

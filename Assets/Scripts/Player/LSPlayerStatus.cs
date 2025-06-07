@@ -1,18 +1,28 @@
 using UnityEngine;
 
+public enum LSGameState
+{
+    Fighting,
+    CatchingKey,
+    CelectingRoom,
+    Escape
+}
+
 public class LSPlayerStatus : MonoBehaviour
 {
     private int life = 100;
     private int key = 0;
-    private int killedGhost = 0;
+    private int killedGhost;
     private GameObject gameController;
     public GUISkin skin;
-    private bool isFightTime;
+    private int maxkilledGhost = 5;
+    private LSGameState playerState;
 
     void Start()
     {
         gameController = GameObject.FindWithTag("GameController");
-        isFightTime = true;
+        killedGhost = maxkilledGhost;
+        playerState = LSGameState.CelectingRoom;
     }
 
     // Update is called once per frame
@@ -23,34 +33,45 @@ public class LSPlayerStatus : MonoBehaviour
 
     void CatchKey()
     {
-        Debug.Log("CatchKey called");
+        //Debug.Log("CatchKey called");
         key++;
         gameController.SendMessage("FightEnd");
-        isFightTime = true;
-        killedGhost = 0;
+        playerState = LSGameState.CelectingRoom;
     }
 
     void ApplyDamage(int amount)
     {
         life -= amount;
-        if (life < 0)
+        if (life <= 0)
         {
-            //Destroy(transform.parent.gameObject);
+            gameController.SendMessage("GameOver");
         }
     }
 
     void KilledGhost()
     {
-        if(isFightTime)
+        if(playerState == LSGameState.Fighting)
         {
-            Debug.Log("KilledGhost called.");
-            killedGhost++;
-            if (killedGhost == 1)
+            //Debug.Log("KilledGhost called.");
+            killedGhost--;
+
+            if (killedGhost <=0)
             {
                 gameController.SendMessage("KeySpawn");
-                isFightTime = false;
+                playerState = LSGameState.CatchingKey;
             }
         }
+    }
+
+    void FightStart()
+    {
+        killedGhost = maxkilledGhost;
+        playerState = LSGameState.Fighting;
+    }
+
+    void EscapeStart()
+    {
+        playerState = LSGameState.Escape;
     }
 
     private void OnGUI()
@@ -59,20 +80,38 @@ public class LSPlayerStatus : MonoBehaviour
         Rect rect1 = new Rect(0,0,Screen.width,Screen.height);
         Rect rect2 = new Rect(0, Screen.height/8, Screen.width,Screen.height);
         Rect rect3 = new Rect(0, Screen.height/4, Screen.width,Screen.height);
-        Rect rect4 = new Rect(0, 0, Screen.width,Screen.height/8);
+        Rect rect4 = new Rect(0, Screen.height/3, Screen.width, Screen.height);
         GUI.Label(rect1, "HP : " + life.ToString(), "HP");
-        GUI.Label(rect2, "Key : " + key.ToString(), "Key");
-        if (isFightTime)
-        {
-            GUI.Label(rect3, "Ghost : " + killedGhost.ToString(), "Ghost");
-            GUI.Label(rect4, "");
-        }
-        else
-        {
-            GUI.Label(rect3, "");
-            GUI.Label(rect4, "Key is Generated!", "Title");
-        }
 
+        switch (playerState)
+        {
+            case LSGameState.Fighting:
+                GUI.Label(rect2, "Level : " + (key + 1).ToString(), "Key");
+                GUI.Label(rect3, "Ghost : " + killedGhost.ToString(), "Ghost");
+                GUI.Label(rect4, "Kill the Ghosts!", "Title");
+                break;
+
+            case LSGameState.Escape:
+                GUI.Label(rect2, "");
+                GUI.Label(rect3, "");
+                GUI.Label(rect4, "Escape Door Generated!", "Title");
+                break;
+
+            case LSGameState.CatchingKey:
+                GUI.Label(rect2, "");
+                GUI.Label(rect3, "");
+                GUI.Label(rect4, "Key is Generated!", "Title");
+                break;
+
+            case LSGameState.CelectingRoom:
+                GUI.Label(rect2, "");
+                GUI.Label(rect3, "");
+                GUI.Label(rect4, "Celect Room.", "Title");
+                break;
+
+            default:
+                break;
+        }
     }
 
 

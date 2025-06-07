@@ -1606,7 +1606,11 @@ MonoBehaviour:
   intervalMin: 1
   intervalMax: 3
   keyPrefab: {fileID: 9065182047418118265, guid: 5699aef0bd0c2a8479a3d0307c2f32ee, type: 3}
-  ghostPrefab: {fileID: 5446477390807014373, guid: d827b0c316bd61643b567c5aa993bbf9, type: 3}
+  ghostPrefab1: {fileID: 498253721416304272, guid: 8523a6d2ca1e6ba41b4eb156b0ec9d57, type: 3}
+  ghostPrefab2: {fileID: 5446477390807014373, guid: d827b0c316bd61643b567c5aa993bbf9, type: 3}
+  ghostPrefab3: {fileID: 6007180743642840513, guid: 759a031132e03b445a4eb347936e2ca9, type: 3}
+  ghostPrefab4: {fileID: 2602231374797837610, guid: 3a0494c17f719aa45a278c3aa9c23f5e, type: 3}
+  ghostPrefab5: {fileID: 8026134481548945004, guid: 9d984659943b26b4cac29c62d219ad10, type: 3}
 --- !u!1 &4954448992498899698
 GameObject:
   m_ObjectHideFlags: 0

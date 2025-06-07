@@ -5,12 +5,14 @@ public class LSDamageEffector : MonoBehaviour
 {
     private bool effectFlag;
     private Color originalColor;
-    public GameObject CharacterMesh;
+    public GameObject CharacterMesh1;
+    public GameObject CharacterMesh2;
 
 
     void Start()
     {
-        originalColor = CharacterMesh.GetComponent<Renderer>().material.color;
+        originalColor = CharacterMesh1.GetComponent<Renderer>().material.color;
+        originalColor = CharacterMesh2.GetComponent<Renderer>().material.color;
         effectFlag = false;
     }
 
@@ -19,7 +21,8 @@ public class LSDamageEffector : MonoBehaviour
     {
         if (effectFlag)
         {
-            CharacterMesh.GetComponent<Renderer>().material.color = Color.red * Mathf.Abs(Mathf.Sin(60.0f * Time.time));
+            CharacterMesh1.GetComponent<Renderer>().material.color = Color.red * Mathf.Abs(Mathf.Sin(40.0f * Time.time));
+            CharacterMesh2.GetComponent<Renderer>().material.color = Color.red * Mathf.Abs(Mathf.Sin(40.0f * Time.time));
         }
     }
 
@@ -29,7 +32,8 @@ public class LSDamageEffector : MonoBehaviour
         effectFlag = true;
         yield return new WaitForSeconds(time);
         effectFlag = false;
-        CharacterMesh.GetComponent<Renderer>().material.color = originalColor;
+        CharacterMesh1.GetComponent<Renderer>().material.color = originalColor;
+        CharacterMesh2.GetComponent<Renderer>().material.color = originalColor;
     }
 
     void ApplyDamage(int amount)

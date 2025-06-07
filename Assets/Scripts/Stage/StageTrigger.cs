@@ -35,6 +35,15 @@ public class StageTrigger : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnd(Collider other)
+    {
+        //Debug.Log("OnTriggerEnter Called");
+        if (other.tag == "Ghost")
+        {
+            Destroy(other.gameObject);
+        }
+    }
+
     private void OpenGates()
     {
         //Debug.Log("OpenGates Called");

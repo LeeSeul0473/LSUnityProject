@@ -14,7 +14,7 @@ public class LSAttackAction : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        meleeAttackRadius = 1.5f;
+        meleeAttackRadius = 1.2f;
         player = GameObject.FindWithTag("Player");
         PlayerStatus = GetComponent<LSPlayerStatus>();
     }
@@ -36,7 +36,7 @@ public class LSAttackAction : MonoBehaviour
         //Debug.Log("attack Position : " + attackPosition);
         //Debug.Log("Player Position : " + player.transform.position);
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
 
         Debug.Log("MeleeAttack Begin");
         Collider[] colls = Physics.OverlapSphere(attackPosition, meleeAttackRadius);

@@ -5,8 +5,9 @@ using UnityEngine.InputSystem.XR;
 
 public class LSGhostMove : MonoBehaviour
 {
-    private float moveSpeed;
+    public float moveSpeed = 1f;
     private float rotationSpeed;
+    public int attackDamage = 5;
     private CharacterController characterController;
     private GameObject player;
 
@@ -14,7 +15,6 @@ public class LSGhostMove : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         characterController = GetComponent<CharacterController>();
-        moveSpeed = 1f;
         rotationSpeed = 10f;
     }
 
@@ -26,23 +26,18 @@ public class LSGhostMove : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), rotationSpeed * Time.deltaTime);
     }
 
-    IEnumerator WaitAndMove(GameObject player, float time)
-    {
-        while (true)
-        {
-
-
-            yield return new WaitForSeconds(time);
-        }
-
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.SendMessage("ApplyDamage", 5);
+            other.gameObject.SendMessage("ApplyDamage", attackDamage);
             Destroy(gameObject);
         }
+    }
+
+    private void ApplyLevel(float inMoveSpeed, int inAttackDamage)
+    {
+        moveSpeed = inMoveSpeed;
+        attackDamage = inAttackDamage;
     }
 }

@@ -12,6 +12,7 @@ TagManager:
   - Key
   - Ghost
   - SpawnActor
+  - Escape
   layers:
   - Default
   - TransparentFX

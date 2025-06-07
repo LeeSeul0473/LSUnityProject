@@ -33,7 +33,7 @@ public class LSKeyMove : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.gameObject.SendMessage("CatchKey", 10);
+            other.gameObject.SendMessage("CatchKey");
             Destroy(gameObject);
         }
     }

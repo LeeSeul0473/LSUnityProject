@@ -3,12 +3,10 @@ using UnityEngine;
 
 public class LSActorGenerator : MonoBehaviour
 {
-    public float IntervalMin = 0.5f;
-    public float IntervalMax = 1.5f;
-    public float KeyRate = 0.01f;
-    public GameObject KeyPrefab;
-    public GameObject SpikeBallPrefab;
-    private bool isKeyGenerated = false;
+    public float intervalMin = 1.0f;
+    public float intervalMax = 3.0f;
+    public GameObject keyPrefab;
+    public GameObject ghostPrefab;
 
     private Coroutine generateCoroutine;
 
@@ -18,36 +16,34 @@ public class LSActorGenerator : MonoBehaviour
         
     }
 
-    IEnumerator Generate()
+    IEnumerator GhostGenerate()
     {
         while (true)
         {
-            yield return new WaitForSeconds(Random.Range(IntervalMin, IntervalMax));
-
-            GameObject prefab;
-            if(!isKeyGenerated && Random.value < KeyRate)
-            {
-                Debug.Log("Key Generated");
-                prefab = KeyPrefab;
-                isKeyGenerated = true;
-            }
-            else
-            {
-                prefab = SpikeBallPrefab;
-            }
+            yield return new WaitForSeconds(Random.Range(intervalMin, intervalMax));
 
             float currentX = this.transform.position.x;
             float currentZ = this.transform.position.z;
             float spawnLocationX = Random.Range(currentX-4.0f, currentX + 4.0f);
             float spawnLocationZ = Random.Range(currentZ-4.0f, currentZ + 4.0f);
             Vector3 spawnPosition = new Vector3(spawnLocationX, 1f, spawnLocationZ);
-            Instantiate(prefab, spawnPosition, Quaternion.identity);
+            Instantiate(ghostPrefab, spawnPosition, Quaternion.identity);
         }
+    }
+
+    void KeyGenerate()
+    {
+        float currentX = this.transform.position.x;
+        float currentZ = this.transform.position.z;
+        float spawnLocationX = Random.Range(currentX - 4.0f, currentX + 4.0f);
+        float spawnLocationZ = Random.Range(currentZ - 4.0f, currentZ + 4.0f);
+        Vector3 spawnPosition = new Vector3(spawnLocationX, 1f, spawnLocationZ);
+        Instantiate(keyPrefab, spawnPosition, Quaternion.identity);
     }
 
     void StartGenerate()
     {
-        generateCoroutine = StartCoroutine(Generate());
+        generateCoroutine = StartCoroutine(GhostGenerate());
     }
 
     void StopGenerate()
